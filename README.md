@@ -8,7 +8,7 @@ This project uses yarn to handle dependencies required and scripts needed to run
 
 Scripts and dependencies can be found in `package.json`
 
-### How The Cypress Tests Works
+### How The Playwright Tests Works
 
 TODO!!!!
 
