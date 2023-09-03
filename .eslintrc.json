@@ -17,6 +17,9 @@
   ],
   "rules": {
     // This allows me to use page.waitForTimeout - only doing it to check lints work
-    "playwright/no-wait-for-timeout": "off"
+    "playwright/no-wait-for-timeout": "off",
+
+    // Turns off rule where spec file must have an assert, most of the asserts happen in page object
+    "playwright/expect-expect": "off"
   }
 }

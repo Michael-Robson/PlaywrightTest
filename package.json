@@ -22,7 +22,7 @@
   },
   "scripts": {
     "prepare": "husky install",
-    "lint": "eslint ./e2e --ext .js",
+    "lint": "eslint ./ --ext .js",
     "prettier:check": "prettier --check .",
     "format": "prettier --write .",
     "lint:fix": "yarn run lint --fix",

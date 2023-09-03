@@ -10,7 +10,21 @@ Scripts and dependencies can be found in `package.json`
 
 ### How The Playwright Tests Works
 
-TODO!!!!
+The Playwright framework uses the page object modal to make maintaining tests as easy as possible. The pages are stored in `e2e\pages`
+
+Tests are stored in `e2e\tests`
+
+A HTML test report is generated after each run in `e2e-test-report`
+
+Custom commands that don't relate to a page object are added to `e2e\common-steps.js`
+
+Global configuration is set in `playwright.config.js` this includes reporter configraution and the base URL
+
+The project is set to run each test agains three different browsers:
+
+- Chrome Desktop
+- Firefox Desktop
+- Chrome Mobile Pixel 5
 
 ### Scripts We Can Run
 
@@ -20,6 +34,8 @@ yarn prettier:check - Reports on any formatting issues
 yarn format - Fixes any formatting issues
 yarn lint:fix - Fixes any linting issues
 yarn beforePR - Runs both lint and format fix jobs
+yarn allTestsHeadless - Run the full test suite in headless mode
+yarn allTests - Runs the full test suite in headed mode (User will see browser appear on screen)
 
 ### Dev Dependencies Used
 
@@ -52,6 +68,3 @@ This means whenever a git commit occures we are running the two lint tasks found
 - uses lint-staged & husky to do pre commit checks https://www.npmjs.com/package/lint-staged & https://www.npmjs.com/package/husky
 - in VS i have format on save turned on so prettier runs each time I save but this will mean on another persons computer it will run checks before a comit
 - Page object model example with Playwright https://playwright.dev/docs/pom
-
-TODO:
-Add notes comment code!!

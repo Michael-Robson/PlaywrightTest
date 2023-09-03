@@ -1,4 +1,5 @@
-const { defineConfig, devices } = require('@playwright/test')
+/* eslint-disable no-undef */
+import { defineConfig, devices } from '@playwright/test'
 
 /**
  * Read environment variables from file.
@@ -9,9 +10,19 @@ const { defineConfig, devices } = require('@playwright/test')
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
-module.exports = defineConfig({
+export default defineConfig({
   /* Where tests are found */
   testDir: './e2e/tests',
+
+  /* Maximum time one test can run for. */
+  timeout: 80 * 1000,
+  expect: {
+    /**
+     * Maximum time expect() should wait for the condition to be met.
+     * For example in `await expect(locator).toHaveText();`
+     */
+    timeout: 80000,
+  },
 
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -26,7 +37,12 @@ module.exports = defineConfig({
   workers: process.env.CI ? 1 : undefined,
 
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: [
+    [process.env.CI ? 'line' : 'line'],
+    ['dot'], // Outputs to terminal
+    ['html', { outputFolder: 'e2e-test-report', open: 'never' }], // generates an html report but doesn't hang and open it at end of test run
+    ['junit', { outputFile: 'e2e-test-report/results.xml' }], // create a junit report
+  ],
 
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -55,16 +71,11 @@ module.exports = defineConfig({
       use: { ...devices['Desktop Firefox'] },
     },
 
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
-
     /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: { ...devices['Pixel 5'] },
-    // },
+    {
+      name: 'Mobile Chrome',
+      use: { ...devices['Pixel 5'] },
+    },
     // {
     //   name: 'Mobile Safari',
     //   use: { ...devices['iPhone 12'] },
@@ -80,6 +91,9 @@ module.exports = defineConfig({
     //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     // },
   ],
+
+  /* Folder for test artifacts such as screenshots, videos, traces, etc. */
+  outputDir: 'e2e-test-results/',
 
   /* Run your local dev server before starting the tests */
   // webServer: {

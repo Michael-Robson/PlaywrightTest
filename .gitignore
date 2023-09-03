@@ -402,3 +402,7 @@ FodyWeavers.xsd
 
 # Playwright examples
 tests-examples/
+
+# Playwright test report
+/e2e-test-report/
+/e2e-test-results/
