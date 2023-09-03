@@ -396,3 +396,13 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/test-results/
+/playwright-report/
+/playwright/.cache/
+
+# Playwright examples
+tests-examples/
+
+# Playwright test report
+/e2e-test-report/
+/e2e-test-results/
