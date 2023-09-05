@@ -1,3 +1,5 @@
+import { expect } from '@playwright/test'
+
 /**
  * A class of common functions we might want to use in our tests
  */
@@ -26,6 +28,21 @@ class CommonSteps {
     throw new Error(
       `Expected text "${expected}" not found on the page after ${maxRetries} retries`
     )
+  }
+
+  /**
+   * Looks for a link with the passed in text value and clicks it
+   */
+  async clickLinkByText(linkText) {
+    await this.page.locator(`a:text-is("${linkText}")`).click()
+  }
+
+  /**
+   * Asserts the current page url matches the passed in value
+   */
+  async assertPageURL(expectedURL) {
+    const current = this.page.url()
+    expect(current).toContain(expectedURL)
   }
 }
 

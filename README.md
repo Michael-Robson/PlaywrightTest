@@ -28,7 +28,6 @@ The project is set to run each test agains three different browsers:
 
 ### Scripts We Can Run
 
-TO UPDATE!!!!!
 yarn lint - Runs eslint check on all Playwright files
 yarn prettier:check - Reports on any formatting issues
 yarn format - Fixes any formatting issues
